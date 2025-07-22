@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url("Images/Man_with_panda.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;   /* Makes sure image fills the screen */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;  /* Stacks children (clock + buttons) vertically */
+  align-items: center;     /* Horizontally centers items */
+  height: 100vh;
+  justify-content: center; /* Ensures container takes full viewport height */
+}
+.timer-box {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */  
+  border-radius: 12px;
+  padding: 35px;
+  backdrop-filter: blur(3px);            /* This creates the "frosted" effect */
+  border: 1px solid rgba(255, 255, 255, 0.5);/* Light border for depth */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);  /* Soft outer shadow for separation */
+}
+#timeDisplay {
+font-size: 69px;
+font-weight: 800;        /*Extra bold */
+font-family: monospace;
+text-align: center;     /* Horizontally center the text */
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);   /* Subtle glow for readability */
+color: white;
+}
+.button-group{
+  display: flex;           /* Places buttons in a row */
+  gap: 15px;               /* Adds 15px spacing between buttons */
+  margin-top: 20px;        /* Adds space above buttons */  
+}
+.button-group button {
+  padding: 10px 20px;            /* 10px height (top/bottom), 20px width (left/right) – controls button size */
+  font-size: 16px;               /* Makes button text readable and visible */    
+  font-family: monospace;  
+  border: none;                  /* Removes default browser border */
+  border-radius: 5px;            /* rounds the corners for a soft look */
+  background-color: #ffffff95;
+  cursor: pointer;               /* Cursor becomes a hand pointer on hover – indicates it's clickable */
+  transition: background-color 0.3s ease, transform 0.1s ease;  /* Smooth hover & press effects */
+}
+.button-group button:hover {
+  background-color:yellow;
+}
+
+.button-group button:active {
+  transform: scale(0.97);        /* Adds slight "press down" animation on click */
+}
+
