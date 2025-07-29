@@ -11,15 +11,30 @@ const pomodoroPlusBtn = document.getElementById("pomodorPlusModeBtn");
 const stopwatchBtn = document.getElementById("stopwatchModeBtn");
 const modeButtons = document.querySelectorAll(".mode-btn");
 
+const clickSoundSelect = document.getElementById("clickSoundSelect");
+const endSoundSelect = document.getElementById("endSoundSelect");
+
+const previewClick = document.getElementById("previewClick");
+const previewEnd = document.getElementById("previewEnd");
+
 
 const hoursInput = document.getElementById("hoursInput");
 const minutesInput = document.getElementById("minutesInput");
 const secondsInput = document.getElementById("secondsInput");
 
+
 let selectedThumb = null;       // What user clicked
 let appliedImageUrl = "Images/fogy_forest.jpg";       // Currently applied background
 let currentMode = "pomodor"; // Default mode
 let stopwatchStartTime = null;
+
+//dom for audio
+let selectedClickSoundURL = clickSoundSelect.value;
+let selectedEndSoundURL = endSoundSelect.value;
+
+let clickSound = new Audio(selectedClickSoundURL);
+let endSound = new Audio(selectedEndSoundURL);
+
 
 // Select all thumbnail elements
 const wallpaperThumbs = document.querySelectorAll(".wallpaper-thumb");
@@ -78,7 +93,13 @@ function updateDisplay() {
 
 // ▶️ Start the stopwatch
 function start() {
+
     if (timerInterval) return; // Prevent multiple intervals
+    if (remainingTime <= 0) return; // Timer has ended, doon't start again
+
+    // play click sound
+    clickSound.currentTime = 0;
+    clickSound.play().catch(e => console.warn("Click sound failed:", e));
 
     // checks for stopwatch mode
     if (currentMode === "stopwatch") {
@@ -99,6 +120,10 @@ function start() {
             timerInterval = null;
             remainingTime = 0;
             updateDisplay();
+
+            // play end sound
+            endSound.currentTime = 0;
+             endSound.play().catch(e => console.warn("End sound failed:", e));
         }
     }, 1000);
 }
@@ -146,6 +171,10 @@ function applySettings() {
         document.body.style.backgroundImage = `url('${imageUrl}')`;
         appliedImageUrl = imageUrl;
     }
+    // change sound if selected
+    clickSound = new Audio(selectedClickSoundURL);
+    endSound = new Audio(selectedEndSoundURL);
+
 
     highlightAppliedThumb();
     updateDisplay();
@@ -173,6 +202,43 @@ resetBtn.addEventListener("click", reset);
 settingBtn.addEventListener("click", toggleSettings);
 applyBtn.addEventListener("click", applySettings);
 
+
+// Preview buttons
+let previewAudio = null;
+
+previewClick.addEventListener("click", () => {
+  // Stop and reset previous preview if it's still playing
+  if (previewAudio && !previewAudio.paused) {
+    previewAudio.pause();
+    previewAudio.currentTime = 0;
+  }
+
+  // Create and play the new preview
+  previewAudio = new Audio(selectedClickSoundURL);
+  previewAudio.play();
+});
+
+
+previewEnd.addEventListener("click", () => {
+  // stop and reset previous preview if it's still playing
+  if(previewAudio && !previewAudio.paused) {
+    previewAudio.pause90;
+    previewAudio.currentTime = 0;
+  }
+  const preview = new Audio(selectedEndSoundURL);
+
+  preview.play();
+});
+
+clickSoundSelect.addEventListener("change", () => {
+  selectedClickSoundURL = clickSoundSelect.value;
+});
+
+endSoundSelect.addEventListener("change", () => {
+  selectedEndSoundURL = endSoundSelect.value;
+});
+
+
 pomodoroBtn.addEventListener("click", () => switchMode("pomodoro"));
 pomodoroPlusBtn.addEventListener("click", () => switchMode("pomodorPlus"));
 stopwatchBtn.addEventListener("click", () => switchMode("stopwatch"));
@@ -196,3 +262,5 @@ document.querySelectorAll(".wallpaper-thumb").forEach(thumb => {
 // Initial display
 updateDisplay();
 highlightAppliedThumb();
+
+

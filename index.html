@@ -4,14 +4,17 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Zen Garden</title>
-        <link rel="icon" href="Images/dog_favicon.png">
+        <link rel="icon" href="Images/Icons/dog_favicon.png">
         <link rel="stylesheet" href="styles.css">
     </head>
 
     <body>
         <div class="header">
-            <img src="Images\dog_minecraft.png" class="header-icon">
+            <img src="Images/Icons/dog_minecraft.png" class="header-icon">
             <h3 class="title">Zen Garden</h3>
+            <div class="footer">
+            <button id="settingBtn">Setting</button>
+        </div>
         </div>
        <div class="container">
         <div class="timer-box">
@@ -28,10 +31,6 @@
         </div>
         </div>
        </div>
-
-       <div class="footer">
-            <button id="settingBtn">Setting</button>
-        </div>
         <div class="settings-panel" id="settingsPanel">
             <label>
                 Hrs:
@@ -53,9 +52,30 @@
             <img src="Images/po.jpg" data-image="Images/po.jpg" class="wallpaper-thumb">
             <img src="Images/anime_girl.jpg" data-image="Images/anime_girl.jpg" class="wallpaper-thumb">
             </div>
+            <div class="sounds">
+               <!-- Click Sound Selection -->
+                <label for="clickSoundSelect">Start Sound:</label>
+                <select id="clickSoundSelect">
+                    <option value="Sounds/clock-ticking.mp3">Clock-ticking</option>
+                    <option value="Sounds/bam-dragon-ball.mp3">Goku-bam</option>
+                </select>
+                <button id="previewClick">🔊 Preview</button>
+
+                <!-- End Sound Selection -->
+                <br><br>
+                <label for="endSoundSelect">End Sound:</label>
+                <select id="endSoundSelect">
+                    <option value="Sounds/end-timer.mp3">Kitchen clock</option>
+                    <option value="Sounds/air-siren.mp3">Air siren</option>
+                    <option value="Sounds/kids-saying-yay.mp3">Kids yay</option>
+                </select>
+                <button id="previewEnd">🔊 Preview</button>
+            </div>
 
 
             <button id="applySettingsBtn">Apply</button>
+            
+
         </div>
 
        <script src="script.js"></script>

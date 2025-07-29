@@ -1,12 +1,10 @@
 body {
-  overflow: hidden;
-  padding-top: 70px;
   margin: 0;
   padding: 0;
   background-image: url("Images/fogy_forest.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
   background-size: cover;   /* Makes sure image fills the screen */
 }
 
@@ -18,23 +16,35 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);/* Light border for depth */
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);  /* Soft outer shadow for separation */
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0px;
   left: 0px;
   z-index: 999;
 }
+.footer{
+  display: flex;
+  justify-content: flex-end;  /* Aligns content to the right */
+  margin-right: 25px;
+  align-items: center;        /* Vertically centers button if needed */
+}
 
 .title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.836);   /* Subtle glow for readability */
+  flex: 1;
+  display: flex;
+  color: white;
+  width: 100%;
+  justify-content: center;
   font-size: 18px;
   font-family: 'Courier New', Courier, monospace;
   font-weight: bold;
+  margin: 0;
+  
 }
 
 .header-icon {
-  position: absolute;
-
-  left: 16px;
   width: 60px;
   height: 50px;
   object-fit: cover;
@@ -130,27 +140,16 @@ color: white;
   transform: scale(0.97);        /* Adds slight "press down" animation on click */
 }
 
-.footer{
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white */  
-  backdrop-filter: blur(1.5px);            /* This creates the "frosted" effect */
-  width: 100%;
-  padding: 7px;
-  bottom: 0px;
-  border-top: 1px solid rgba(255, 255, 255, 0.5);/* Light border for depth */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);  /* Soft outer shadow for separation */
-  display: flex;
-  justify-content: center;
-  position: absolute;
-}
 
 #settingBtn {
   padding: 15px 20px;
   font-size: 15px;
   font-family: monospace;
   border: none;
-  border-radius: 5px;
+  border-radius: 12px;
   background-color: #ffffff95;
   cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* <-- Added shadow */
   transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
@@ -255,6 +254,39 @@ color: white;
   filter: grayscale();
 }
 
+/*Styling for sound settings*/
+.sounds label{
+  padding: 5px;
+    margin: 4px;
+    font-family: monospace;
+    font-size: 15px;
+}
 
 
+.sounds select {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(0, 0, 0);
+    margin-bottom: 12px;
+    outline: none;
+    font-family: inherit;
+}
+
+.sounds button {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: rgb(0, 0, 0);
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sounds button:hover {
+    background-color: rgba(68, 195, 234, 0.416);
+}
 
